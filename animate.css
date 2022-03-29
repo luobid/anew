@@ -1,111 +1,207 @@
-<!DOCTYPE html>
-<html>
-	<style type="text/css">
-				body{
-					margin: 0;
-					padding: 0;
-					box-sizing: border-box;
-				}
-				.starArea{
-					width: 100vw;
-					height: 100vh;
-					position: fixed;
-					background-image: linear-gradient(to bottom, #1b2947, #2b3152, #3b385d, #4c4067, #5d4771);
-					z-index: -99;
-				}
-				.moon{
-					position: absolute;
-					top: 20px;
-					right: 40px;
-					width: 60px;
-					height: 60px;
-					background-color: #ffeaa7;
-					border-radius: 50%;
-					box-shadow: 0 0 20px #ffeaa7;
-				}
-				.star{
-					position: absolute;
-					width: 0;
-					height: 0;
-					opacity: 0.2;
-					border: 2px solid transparent;
-					border-bottom: 4px solid #fff;
-					animation: blingbling 3s linear infinite;
-				}
-				.star::before{
-					content: "";
-					position: absolute;
-					top: 4px;
-					left: -2px;
-					border: 2px solid transparent;
-					border-top: 4px solid #fff;
-				}
-				@keyframes blingbling{
-					20%{
-						opacity: 0.2;
-					}
-					40%{
-						opacity: 0.5;
-					}
-					60%{
-						opacity: 1;
-					}
-					80%{
-						opacity: 0.5;
-					}
-					100%{
-						opacity: 0.2;
-					}
-				}
-			</style>
-    <head>
-        <meta charset="utf-8" />
-        <title>淡入的文字</title>
-        <link type="text/css" rel="stylesheet" href="animate.css" />
-    </head>
-    <body>
-		<div class="starArea">
-					<div class="moon"></div>
-				</div>
-				<script type="text/javascript">
-					function starInit(starCount){
-						const starArea = document.querySelector(".starArea");
-						for (let i = 0; i < starCount; i++) {
-							const star = document.createElement("div");
-							star.classList.add("star");
-							starArea.appendChild(star);
-						}
-					}
-					// starInit();
-					function starPosition(starCount){
-						starInit(starCount);
-						const stars = document.querySelectorAll(".star");
-						console.log(stars);
-						for (let i = 0; i < starCount; i++) {
-							let left = Math.floor(Math.random() * window.innerWidth);
-							let top = Math.floor(Math.random() * window.innerHeight/1.5);
-							stars[i].style.left = left + 'px';
-							stars[i].style.top = top + 'px';
-							stars[i].style.animationDelay = Math.floor(Math.random().toFixed(1) * i) + 's';
-						}
-					}
-					starPosition(100);
-				</script>
+.fade-in-words{
+    width: 200px;
+    margin: 0 auto;
+    text-align: center;
+}
 
-
-        <div class="fade-in-words">
-        <div>    <span class="first-words"  style="font-size: 50px; color: pink;">讯</span>
-        <div>    <span class="second-words" style="font-size: 50px; color: pink;">雷</span>
-        <div>    <span class="third-words"  style="font-size: 50px; color: pink;">不</span>
-        <div>    <span class="four-words"   style="font-size: 50px; color: pink;">及</span>
-        <div>    <span class="five-words"   style="font-size: 50px; color: pink;">掩</span>
-        <div>    <span class="six-words"    style="font-size: 50px; color: pink;">耳 </span>
-	    <div><span class="seven-words"  style="font-size: 50px; color: pink;">盗</span>
-        <div>    <span class="eight-words" style="font-size: 50px; color: pink;">铃</span>
-        <div>    <span class="nine-words"  style="font-size: 50px; color: pink;">儿</span>
-        <div>    <span class="ten-words"   style="font-size: 50px; color: pink;"> 叮</span>
-        <div>    <span class="oneone-words"   style="font-size: 50px; color: pink;">当</span>
-        <div>    <span class="onetwo-words"    style="font-size: 50px; color: pink;">响 </span>
-        </div>
-    </body>
-</html>
+/*自定义一个透明度从0到1的动画，它的名称是fade-in*/
+@keyframes fade-in{  
+    0%{ opacity: 0;}
+    100%{opacity:1;}
+}
+@-webkit-keyframes fade-in{
+    0%{ opacity: 0;}
+    100%{opacity:1;}
+}
+@-ms-keyframes fade-in{
+    0%{ opacity: 0;}
+    100%{opacity:1;}
+}
+@-o-keyframes fade-in{
+    0%{ opacity: 0;}
+    100%{opacity:1;}
+}
+@-moz-keyframes fade-in{
+    0%{ opacity: 0;}
+    100%{opacity:1;}
+}
+.first-words{ 
+    opacity: 0;      /*实先规定文字的状态是不显示的*/
+    animation: fade-in 4s ease 0s 1;    /*调用名称为fade-in的动画，全程动画显示时间4S，进入方式为ease，延时0S进入，播放次数1次*/
+    -webkit-animation: fade-in 4s ease 0s 1;
+    -moz-animation: fade-in 4s ease 0s 1;
+    -o-animation: fade-in 4s ease 0s 1;
+    -ms-animation: fade-in 4s ease 0s 1;
+    
+    /*规定动画的最后状态为结束状态*/
+    animation-fill-mode:forwards;
+    -webkit-animation-fill-mode: forwards;  
+      -o-animation-fill-mode: forwards; 
+      -ms-animation-fill-mode: forwards;   
+      -moz-animation-fill-mode: forwards; 
+}
+.second-words{ 
+    opacity: 0;    
+    animation: fade-in 4s ease 2s 1;
+    -webkit-animation: fade-in 4s ease 2s 1;
+    -moz-animation: fade-in 4s ease 2s 1;
+    -o-animation: fade-in 4s ease 2s 1;
+    -ms-animation: fade-in 4s ease 2s 1;
+    
+    /*规定动画的最后状态为结束状态*/
+    animation-fill-mode:forwards;
+    -webkit-animation-fill-mode: forwards;  
+      -o-animation-fill-mode: forwards; 
+      -ms-animation-fill-mode: forwards;   
+      -moz-animation-fill-mode: forwards; 
+}
+.third-words{ 
+    opacity: 0;    
+    animation: fade-in 4s ease 4s 1;
+    -webkit-animation: fade-in 4s ease 4s 1;
+    -moz-animation: fade-in 4s ease 4s 1;
+    -o-animation: fade-in 4s ease 4s 1;
+    -ms-animation: fade-in 4s ease 4s 1;
+    
+    /*规定动画的最后状态为结束状态*/
+    animation-fill-mode:forwards;
+    -webkit-animation-fill-mode: forwards;  
+      -o-animation-fill-mode: forwards; 
+      -ms-animation-fill-mode: forwards;   
+      -moz-animation-fill-mode: forwards; 
+}
+.four-words{ 
+    opacity: 0;    
+    animation: fade-in 4s ease 6s 1;
+    -webkit-animation: fade-in 4s ease 6s 1;
+    -moz-animation: fade-in 4s ease 6s 1;
+    -o-animation: fade-in 4s ease 6s 1;
+    -ms-animation: fade-in 4s ease 6s 1;
+    
+    /*规定动画的最后状态为结束状态*/
+    animation-fill-mode:forwards;
+    -webkit-animation-fill-mode: forwards;  
+      -o-animation-fill-mode: forwards; 
+      -ms-animation-fill-mode: forwards;   
+      -moz-animation-fill-mode: forwards; 
+}
+.five-words{ 
+    opacity: 0;    
+    animation: fade-in 4s ease 8s 1;
+    -webkit-animation: fade-in 4s ease 8s 1;
+    -moz-animation: fade-in 4s ease 8s 1;
+    -o-animation: fade-in 4s ease 8s 1;
+    -ms-animation: fade-in 4s ease 8s 1;
+    
+    /*规定动画的最后状态为结束状态*/
+    animation-fill-mode:forwards;
+    -webkit-animation-fill-mode: forwards;  
+      -o-animation-fill-mode: forwards; 
+      -ms-animation-fill-mode: forwards;   
+      -moz-animation-fill-mode: forwards; 
+}
+.six-words{ 
+    opacity: 0;    
+    animation: fade-in 4s ease 10s 1;
+    -webkit-animation: fade-in 4s ease 10s 1;
+    -moz-animation: fade-in 4s ease 10s 1;
+    -o-animation: fade-in 4s ease 10s 1;
+    -ms-animation: fade-in 4s ease 10s 1;
+    
+    /*规定动画的最后状态为结束状态*/
+    animation-fill-mode:forwards;
+    -webkit-animation-fill-mode: forwards;  
+      -o-animation-fill-mode: forwards; 
+      -ms-animation-fill-mode: forwards;   
+      -moz-animation-fill-mode: forwards; 
+}
+.seven-words{ 
+    opacity: 0;    
+    animation: fade-in 4s ease 12s 1;
+    -webkit-animation: fade-in 4s ease 12s 1;
+    -moz-animation: fade-in 4s ease 12s 1;
+    -o-animation: fade-in 4s ease 12s 1;
+    -ms-animation: fade-in 4s ease 12s 1;
+    
+    /*规定动画的最后状态为结束状态*/
+    animation-fill-mode:forwards;
+    -webkit-animation-fill-mode: forwards;  
+      -o-animation-fill-mode: forwards; 
+      -ms-animation-fill-mode: forwards;   
+      -moz-animation-fill-mode: forwards; 
+}
+.eight-words{ 
+    opacity: 0;    
+    animation: fade-in 4s ease 14s 1;
+    -webkit-animation: fade-in 4s ease 14s 1;
+    -moz-animation: fade-in 4s ease 14s 1;
+    -o-animation: fade-in 4s ease 14s 1;
+    -ms-animation: fade-in 4s ease 14s 1;
+    
+    /*规定动画的最后状态为结束状态*/
+    animation-fill-mode:forwards;
+    -webkit-animation-fill-mode: forwards;  
+      -o-animation-fill-mode: forwards; 
+      -ms-animation-fill-mode: forwards;   
+      -moz-animation-fill-mode: forwards; 
+}
+.nine-words{ 
+    opacity: 0;    
+    animation: fade-in 4s ease 16s 1;
+    -webkit-animation: fade-in 4s ease 16s 1;
+    -moz-animation: fade-in 4s ease 16s 1;
+    -o-animation: fade-in 4s ease 16s 1;
+    -ms-animation: fade-in 4s ease 16s 1;
+    
+    /*规定动画的最后状态为结束状态*/
+    animation-fill-mode:forwards;
+    -webkit-animation-fill-mode: forwards;  
+      -o-animation-fill-mode: forwards; 
+      -ms-animation-fill-mode: forwards;   
+      -moz-animation-fill-mode: forwards; 
+}
+.ten-words{ 
+    opacity: 0;    
+    animation: fade-in 4s ease 18s 1;
+    -webkit-animation: fade-in 4s ease 18s 1;
+    -moz-animation: fade-in 4s ease 18s 1;
+    -o-animation: fade-in 4s ease 18s 1;
+    -ms-animation: fade-in 4s ease 18s 1;
+    
+    /*规定动画的最后状态为结束状态*/
+    animation-fill-mode:forwards;
+    -webkit-animation-fill-mode: forwards;  
+      -o-animation-fill-mode: forwards; 
+      -ms-animation-fill-mode: forwards;   
+      -moz-animation-fill-mode: forwards; 
+}
+.oneone-words{ 
+    opacity: 0;    
+    animation: fade-in 4s ease 20s 1;
+    -webkit-animation: fade-in 4s ease 20s 1;
+    -moz-animation: fade-in 4s ease 20s 1;
+    -o-animation: fade-in 4s ease 20s 1;
+    -ms-animation: fade-in 4s ease 20s 1;
+    
+    /*规定动画的最后状态为结束状态*/
+    animation-fill-mode:forwards;
+    -webkit-animation-fill-mode: forwards;  
+      -o-animation-fill-mode: forwards; 
+      -ms-animation-fill-mode: forwards;   
+      -moz-animation-fill-mode: forwards; 
+}
+.onetwo-words{ 
+    opacity: 0;    
+    animation: fade-in 4s ease 22s 1;
+    -webkit-animation: fade-in 4s ease 22s 1;
+    -moz-animation: fade-in 4s ease 22s 1;
+    -o-animation: fade-in 4s ease 22s 1;
+    -ms-animation: fade-in 4s ease 22s 1;
+    
+    /*规定动画的最后状态为结束状态*/
+    animation-fill-mode:forwards;
+    -webkit-animation-fill-mode: forwards;  
+      -o-animation-fill-mode: forwards; 
+      -ms-animation-fill-mode: forwards;   
+      -moz-animation-fill-mode: forwards; 
+}
